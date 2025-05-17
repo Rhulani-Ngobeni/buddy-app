@@ -1,0 +1,116 @@
+   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheduling Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
+        }
+
+        .schedule {
+            background-color: #fff;
+            padding: 1em;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .quotes {
+            background-color: #fff;
+            padding: 1em;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 2em;
+        }
+
+        #task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #task-list li {
+            padding: 0.5em;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #task-list li:last-child {
+            border-bottom: none;
+        }
+
+        #quote-display {
+            font-style: italic;
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Scheduling Website</h1>
+    </header>
+    <main>
+        <section class="schedule">
+            <h2>Schedule</h2>
+            <form>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date"><br><br>
+                <label for="task">Task:</label>
+                <input type="text" id="task" name="task"><br><br>
+                <button id="add-task-btn">Add Task</button>
+            </form>
+            <ul id="task-list"></ul>
+        </section>
+        <section class="quotes">
+            <h2>Inspirational Quotes</h2>
+            <p id="quote-display"></p>
+            <button id="new-quote-btn">New Quote</button>
+        </section>
+    </main>
+    <script>
+        // Quote array
+        const quotes = [
+            "Believe you can and you're halfway there. - Theodore Roosevelt",
+            "It does not matter how slowly you go as long as you do not stop. - Confucius",
+            "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill"
+        ];
+
+        // Display initial quote
+        document.getElementById("quote-display").innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+
+        // Add event listener for new quote button
+        document.getElementById("new-quote-btn").addEventListener("click", function() {
+            document.getElementById("quote-display").innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+        });
+
+        // Add event listener for add task button
+        document.getElementById("add-task-btn").addEventListener("click", function() {
+            const taskList = document.getElementById("task-list");
+            const task = document.getElementById("task").value;
+            const date = document.getElementById("date").value;
+            const newTask = document.createElement("LI");
+            newTask.textContent = `${task} - ${date}`;
+            taskList.appendChild(newTask);
+            document.getElementById("task").value = "";
+            document.getElementById("date").value = "";
+        });
+    </script>
+</body>
+</html>
